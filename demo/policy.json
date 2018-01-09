@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1471647590001",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::669192765246:user/doublehelix-app"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::s3.bt2.doublehelix.com",
+                "arn:aws:s3:::s3.bt2.doublehelix.com/*"
+            ]
+        }
+    ]
+}

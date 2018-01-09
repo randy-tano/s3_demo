@@ -5,7 +5,7 @@ import os
 AWS_ACCESS_KEY_ID = 'AKIAICTERXFTIFIVFPTA'
 AWS_SECRET_ACCESS_KEY = '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'
 
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 's3.bt.doublehelix.com')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 's3.bt2.doublehelix.com')
 S3_REGION = os.environ.get('S3_REGION', 'us-east-1')
 
 S3_DESTINATIONS = {

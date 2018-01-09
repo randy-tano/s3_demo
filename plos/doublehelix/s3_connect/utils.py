@@ -1,6 +1,7 @@
 """ AWS Signature v4 Key derivation functions.
 
 See:
+https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-photo-album.html
 http://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html
 """
 

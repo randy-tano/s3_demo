@@ -22,9 +22,9 @@ from plos.doublehelix.base_dirs import *  # NOQA
 SECRET_KEY = 'f1oqlv$9sp%l_y0_*3mgg3e)uaq8^&#-x9=l68dzxg1*%7-3-z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = (
@@ -35,10 +35,13 @@ INSTALLED_APPS = (
   'django.contrib.messages',
   'django.contrib.staticfiles',
 
+  'corsheaders',
+
   'plos.doublehelix.s3_connect',
 )
 
 MIDDLEWARE = (
+  'corsheaders.middleware.CorsMiddleware',
   'django.middleware.security.SecurityMiddleware',
   'django.contrib.sessions.middleware.SessionMiddleware',
   'django.middleware.common.CommonMiddleware',
@@ -46,9 +49,9 @@ MIDDLEWARE = (
   'django.contrib.auth.middleware.AuthenticationMiddleware',
   'django.contrib.messages.middleware.MessageMiddleware',
   'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
 
-ROOT_URLCONF = 'plos.doublehelix.urls'
+  'plos.doublehelix.s3_connect.middleware.S3PreFlightMiddleware',
+)
 
 TEMPLATES = (
   {
@@ -111,3 +114,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_ROOT = os.path.join(VAR_ROOT, 'static')
 STATIC_URL = '/static/'
+
+# CORS settings
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = (
+  '127.0.0.1:8000',
+  'localhost:8000',
+)
+
+CSRF_TRUSTED_ORIGINS = (
+  '127.0.0.1:8000',
+  'localhost:8000',
+)
+
+CORS_ALLOW_HEADERS = (
+  'x-requested-with',
+  'content-type',
+  'accept',
+  'origin',
+  'authorization',
+  'x-csrftoken',
+  'Access-Control-Allow-Origin'
+)

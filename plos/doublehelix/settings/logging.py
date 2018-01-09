@@ -6,7 +6,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['app_logs'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
         'django.db.backends': {
