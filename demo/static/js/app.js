@@ -1,12 +1,11 @@
 // Initialize the Amazon Cognito credentials provider.
-AWS.config.region = 'us-east-2';
+AWS.config.region = awsConfig.region;
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-2:e865e713-685c-4f71-986c-3598ce67bcc4',
+    IdentityPoolId: awsConfig.identityPoolId,
 });
 
-var s3BucketName = 's3.bt2.doublehelix.com';
 var s3 = new AWS.S3({
-  params: {Bucket: s3BucketName}
+  params: {Bucket: awsConfig.bucketName}
 });
 
 function uploadFile() {
@@ -15,7 +14,7 @@ function uploadFile() {
     return alert('Please choose a file to upload first.');
   }
 
-  var folderName = 'demo3';
+  var folderName = 'demo2';
 
   var file = files[0];
   var fileName = file.name;

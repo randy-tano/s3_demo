@@ -1,16 +1,28 @@
-{% load static %}
+{% load pipeline %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.176.0.min.js"></script>
-    <script src="/static/js/app.js?v=1.0.7"></script>
+    <title>Uploader Demo</title>
+    <script type="text/javascript">
+      var awsConfig = {
+        accessKey: '{{ AWS_ACCESS_KEY_ID }}',
+        secretKey: '{{ AWS_SECRET_ACCESS_KEY }}',
+        bucketName: '{{ AWS_STORAGE_BUCKET_NAME }}',
+        identityPoolId: '{{ AWS_IDENTITY_POOL_ID }}',
+        region: '{{ S3_REGION }}'
+      };
+    </script>
   </head>
   <body>
     <h1>Uploads</h1>
     <div id="app">
       <input id="file_upload" type="file" accept="image/*">
       <br/>
-      <button id="addphoto" onclick="uploadFile();">Upload</button>
+      <button id="addfile" onclick="uploadFile();">Upload</button>
     </div>
   </body>
+  <footer>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.176.0.min.js"></script>
+    {% javascript 's3_uploader' %}
+  </footer>
 </html>
