@@ -22,6 +22,7 @@ class S3Connect(AppConfig):
         if s3_value:
           setattr(config, setting_name, s3_value)
 
+    config.S3_DOWNLOAD_DESTINATION = config.S3_DOWNLOAD_DESTINATION.rstrip('/')
     if not os.path.exists(config.S3_DOWNLOAD_DESTINATION):
       os.makedirs(config.S3_DOWNLOAD_DESTINATION)
 # pylint: enable=too-few-public-methods
