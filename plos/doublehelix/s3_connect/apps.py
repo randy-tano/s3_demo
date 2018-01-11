@@ -17,7 +17,7 @@ class S3Connect(AppConfig):
 
     # Update the app config from Django's global settings.
     for setting_name in dir(config):
-      if setting_name.startswith('S3_'):
+      if setting_name.startswith('S3_') or setting_name.startswith('AWS_'):
         s3_value = getattr(django_settings, setting_name, None)
         if s3_value:
           setattr(config, setting_name, s3_value)
