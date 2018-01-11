@@ -45,7 +45,7 @@ def get_upload_params(upload_type='preprint', **kwargs):
   else:
       object_key = '%s/%s' % (key.strip('/'), 'some_file.txt')
 
-  bucket = dest.get('bucket') or config.AWS_STORAGE_BUCKET_NAME
+  bucket = dest.get('bucket') or config.S3_STORAGE_BUCKET_NAME
   region = dest.get('region') or config.S3_REGION
   endpoint = 's3.amazonaws.com' if region == 'us-east-1' else ('s3-%s.amazonaws.com' % region)
 

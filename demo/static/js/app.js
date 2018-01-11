@@ -14,7 +14,10 @@ function uploadFile() {
     return alert('Please choose a file to upload first.');
   }
 
-  var folderName = 'demo2';
+  var folderName = document.getElementById('dir_name').value;
+  if (folderName === '') {
+	  folderName = 'demo';
+  }
 
   var file = files[0];
   var fileName = file.name;
