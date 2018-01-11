@@ -22,6 +22,20 @@ LOGGING = {
             'handlers': ['app_logs'],
             'level': 'ERROR',  # Quiet very verbose HTTP logging.
         },
+
+        # Quiet very verbose AWS boto logging.
+        'boto3': {
+            'handlers': ['app_logs'],
+            'level': 'WARN',
+        },
+        'botocore': {
+            'handlers': ['app_logs'],
+            'level': 'WARN',
+        },
+        's3transfer': {
+            'handlers': ['app_logs'],
+            'level': 'WARN',
+        },
     },
 
     'root': {
