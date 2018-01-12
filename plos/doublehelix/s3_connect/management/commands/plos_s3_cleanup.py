@@ -21,8 +21,8 @@ class Command(BaseCommand):
 
   def handle(self, *unused_args, **options):
     for dir_name in options['directory']:
-      count_downloaded = self.s3_download(dir_name)
-      self._write_msg('%s file(s) downloaded from [%s]', count_downloaded, dir_name)
+      count_downloaded = self.s3_delete_contents(dir_name)
+      self._write_msg('%s file(s) deleted from [%s]', count_downloaded, dir_name)
 
   def s3_dir_contents(self, dir_name):
     """Query S3 bucket for the contents of the given directory."""
@@ -34,20 +34,15 @@ class Command(BaseCommand):
       dir_contents = (bucket['Key'] for bucket in response['Contents'])
       return dir_contents
 
-  def s3_download(self, dir_name):
-    """Download files from the given directory."""
+  def s3_delete_contents(self, dir_name):
+    """Delete the given directory (and files)."""
     file_count = 0
     dir_contents = self.s3_dir_contents(dir_name)
     if dir_contents:
       for file_key in dir_contents:
-        dir_name, file_name = file_key.split('/')
-        self._write_msg('Downloading file [%s/%s]', dir_name, file_name)
+        self._write_msg('Deleting file [%s]', file_key)
         try:
-          destination_dir = '%s/%s' % (config.S3_DOWNLOAD_DESTINATION, dir_name)
-          os.makedirs(destination_dir, exist_ok=True)
-
-          destination_file = '%s/%s' % (destination_dir, file_name)
-          s3_utils.S3_BUCKET.download_file(file_key, destination_file)
+          s3_utils.S3_CLIENT.delete_object(Bucket=config.S3_STORAGE_BUCKET_NAME, Key=file_key)
           file_count += 1
         except botocore.exceptions.ClientError as exception:
           if exception.response['Error']['Code'] == '404':
