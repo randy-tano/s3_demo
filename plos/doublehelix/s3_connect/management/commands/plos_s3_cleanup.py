@@ -10,8 +10,8 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class Command(s3_utils.DeleteObjectMixin, BaseCommand):
-  """Management command to download the files from a given directory."""
-  help = 'Download files in a directory.'
+  """Management command to delete the files from a given directory."""
+  help = 'Delete all the files in a directory.'
 
   def add_arguments(self, parser):
     parser.add_argument('directory', nargs='+', type=str, help='Directory name.')

@@ -21,7 +21,7 @@ S3_BUCKET = S3_RESOURCE.Bucket(config.S3_STORAGE_BUCKET_NAME)
 S3_CLIENT = boto3.client('s3')
 
 
-class BaseS3Util(object):
+class _BaseS3Util(object):
   """Base class for S3 operations."""
 
   @classmethod
@@ -40,7 +40,7 @@ class BaseS3Util(object):
     _LOGGER.info(msg_template, *args)
 
 
-class DownloaderMixin(BaseS3Util):
+class DownloaderMixin(_BaseS3Util):
   """Downloads objects from S3."""
 
   def s3_download(self, dir_name):
@@ -66,7 +66,7 @@ class DownloaderMixin(BaseS3Util):
     return file_count
 
 
-class DeleteObjectMixin(BaseS3Util):
+class DeleteObjectMixin(_BaseS3Util):
   """Delete objects from S3."""
 
   def s3_delete_contents(self, dir_name):
