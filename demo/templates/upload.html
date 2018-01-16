@@ -1,6 +1,7 @@
 {% load pipeline %}
 <!DOCTYPE html>
 <html>
+  {% stylesheet 's3_uploader_css' %}
   <head>
     <title>Uploader Demo</title>
     <script type="text/javascript">
@@ -22,9 +23,12 @@
       <br/>
       <button id="addfile" onclick="uploadFile();">Upload</button>
     </div>
+    <div id="popDiv" class="ontop popup">
+    Uploading file(s), please DO NOT close the page...
+    </div>
   </body>
   <footer>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.176.0.min.js"></script>
-    {% javascript 's3_uploader' %}
+    {% javascript 's3_uploader_js' %}
   </footer>
 </html>

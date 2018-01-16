@@ -22,6 +22,7 @@ function waitForCompletion() {
       upload_timer = 0;
 	}
     console.log('Done with file upload!');
+    document.getElementById('popDiv').style.display = 'none';
   }
 }
 
@@ -60,5 +61,6 @@ function uploadFile() {
         }
       });
   }
+  document.getElementById('popDiv').style.display = 'block';
   console.log('Waiting for completion...');
 }
