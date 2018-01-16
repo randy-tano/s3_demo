@@ -18,14 +18,14 @@ class Command(s3_utils.DeleteObjectMixin, BaseCommand):
 
   def handle(self, *unused_args, **options):
     for dir_name in options['directory']:
-      count_downloaded = self.s3_delete_contents(dir_name)
-      self.write_msg('%s file(s) deleted from [%s]', count_downloaded, dir_name)
+      count_deleted = self.s3_delete_contents(dir_name)
+      self.write_msg('%s file(s) deleted from [%s]', count_deleted, dir_name)
 
   def write_msg(self, msg_template, *args, style=None):
     """Write the message to `stdout` and to the log."""
     msg = msg_template.replace('%s', '{}').format(*args)
-    style = style or 'success'
-    if style == 'error':
+    style = style or s3_utils.STYLE_SUCCESS
+    if style == s3_utils.STYLE_ERROR:
       self.stdout.write(self.style.ERROR(msg))
     else:
       self.stdout.write(self.style.SUCCESS(msg))

@@ -20,6 +20,10 @@ S3_BUCKET = S3_RESOURCE.Bucket(config.S3_STORAGE_BUCKET_NAME)
 
 S3_CLIENT = boto3.client('s3')
 
+STYLE_ERROR = 'error'
+
+STYLE_SUCCESS = 'success'
+
 
 class _BaseS3Util(object):
   """Base class for S3 operations."""
